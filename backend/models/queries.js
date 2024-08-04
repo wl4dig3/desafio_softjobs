@@ -19,8 +19,24 @@ const getUsuarios = async () => {
         throw error;
     }
 };
+const getUsuario = async (email) => {
+    try {
+        const sql = "SELECT * FROM usuarios WHERE email = $1", values = [email];
+        const result = await poll.query(sql, values);
+        
+        if (result.rowCount > 0) {
+            return result.rows
+        } else {
+            res.status(404).json({ message: 'User not found' });
+        }
+    } catch (error) {
+        console.error('Error al obtener el usuario:', error.message);
+        res.status(500).json({ error: error.message });
+    }
+};
 
 export const model = {
     addUsuario,
-    getUsuarios
+    getUsuarios,
+    getUsuario
 };
