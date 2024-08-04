@@ -10,7 +10,17 @@ const addUsuario = async ({email, password, rol, lenguage}) => {
     }
     return console.log("Error al registrar el usuario", error.message);
 }
+const getUsuarios = async () => {
+    try {
+        const { rows: usuarios } = await poll.query("SELECT * FROM usuarios");
+        return usuarios;
+    } catch (error) {
+        console.error('Error al obtener los usuarios:', error.message);
+        throw error;
+    }
+};
 
 export const model = {
-    addUsuario 
+    addUsuario,
+    getUsuarios
 };

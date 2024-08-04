@@ -26,6 +26,14 @@ const home = (req, res) => {
         res.send("Usuario creado exitosamente");
         return result;
     };
+    const getUsuarioControlador = async (req, res) => {
+       try {
+        const usuarios = await model.getUsuarios();
+        res.json(usuarios);
+       } catch (error) {
+        console.log('falló la consulta',error.message);
+       }
+    };
 
 
 
@@ -35,5 +43,6 @@ const home = (req, res) => {
 export const controller = {
     home,
     register,
+    getUsuarioControlador,
     // verificarCredencialesController,
 };
