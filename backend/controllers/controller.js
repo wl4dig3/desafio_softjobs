@@ -24,13 +24,19 @@ const login = async (req, res) => {
 
     const register = async (req, res) => {
         const { email, password, rol, lenguage } = req.body;
-        const result = await model.addUsuario({email, password: bcript.hashSync(password, 10), rol, lenguage});
+        const result = await model.addUsuario({email, password, rol, lenguage});
         res.send("Usuario creado exitosamente");
         return result;
     };
     const getUsuarioControlador = async (req, res) => {
+      const usuario = { 
+        email: req.params.email,
+        password: req.params.password,
+        rol: req.params.rol,
+        lenguage: req.params.lenguage
+       };
        try {
-        const usuarios = await model.getUsuarios();
+        const usuarios = await model.getUsuarios(usuario);
         res.json(usuarios);
        } catch (error) {
         console.log('falló la consulta',error.message);
