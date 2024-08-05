@@ -24,7 +24,7 @@ const login = async (req, res) => {
 
     const register = async (req, res) => {
         const { email, password, rol, lenguage } = req.body;
-        const result = await model.addUsuario({email, password, rol, lenguage});
+        const result = await model.addUsuario({email, password: bcript.hashSync(password, 10), rol, lenguage});
         res.send("Usuario creado exitosamente");
         return result;
     };
