@@ -29,14 +29,8 @@ const login = async (req, res) => {
         return result;
     };
     const getUsuarioControlador = async (req, res) => {
-      const usuario = { 
-        email: req.params.email,
-        password: req.params.password,
-        rol: req.params.rol,
-        lenguage: req.params.lenguage
-       };
        try {
-        const usuarios = await model.getUsuarios(usuario);
+        const usuarios = await model.getUsuarios(usuarios);
         res.json(usuarios);
        } catch (error) {
         console.log('falló la consulta',error.message);
