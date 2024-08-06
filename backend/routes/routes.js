@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/',  controller.home);
 router.post('/registrarse', controller.register);
-router.post('/usuarios', controller.getUsuarioControlador);
+router.post('/usuarios', controller.register);
 router.get('/profile', controller.profile);
 router.post('/login', controller.login);
 

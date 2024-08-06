@@ -29,9 +29,8 @@ const login = async (req, res) => {
         return result;
     };
     const getUsuarioControlador = async (req, res) => {
-      const { email, password, rol, lenguage } = req.body;
        try {
-        const usuarios = await model.addUsuario({email, password: bcript.hashSync(password, 10), rol, lenguage});
+        const usuarios = await model.getUsuarios(usuarios);
         res.json(usuarios);
        } catch (error) {
         console.log('falló la consulta',error.message);
